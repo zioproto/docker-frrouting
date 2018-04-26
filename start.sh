@@ -21,14 +21,4 @@ echo "  Starting FRRouting..."
 echo "##############################"
 /usr/lib/frr/frr start
 
-# Waiting Forever or Until Someone Presses Enter to Stop the Container
-echo "[hit enter key to exit] or run 'docker stop <container>'"
-read
-
-echo "##############################"
-echo "  Stopping FRRouting..."
-echo "##############################"
-/usr/lib/frr/frr stop
-
-echo "Done."
-echo "exited $0"
+while true; do sleep 3600; done
