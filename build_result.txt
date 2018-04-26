@@ -1,0 +1,38 @@
+Sending build context to Docker daemon  9.216kB
+Step 1/12 : FROM ubuntu:16.04
+ ---> 0ef2e08ed3fa
+Step 2/12 : MAINTAINER Eric Pulvino <eric@cumulusnetworks.com>
+ ---> Using cache
+ ---> 1bca26dd9ab8
+Step 3/12 : RUN /usr/bin/apt-get update -yq && /usr/bin/apt-get install -yq     iptables     iproute     libc-ares2     libjson-c2     logrotate     wget     python     python-ipaddr     libsnmp30     && rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 0e8c97fab4bd
+Step 4/12 : RUN wget -O /root/frr.deb https://apps3.cumulusnetworks.com/repos/deb/pool/roh-3/f/frr/frr_3.1+cl3u2-1~ubuntu16.04+1~1506550809.d4b6eca_amd64.deb
+ ---> Using cache
+ ---> 863fd94b7da9
+Step 5/12 : RUN wget -O /root/frr_doc.deb https://apps3.cumulusnetworks.com/repos/deb/pool/roh-3/f/frr/frr-doc_3.1+cl3u2-1~ubuntu16.04+1~1506550809.d4b6eca_all.deb
+ ---> Using cache
+ ---> 8e606390d9ec
+Step 6/12 : RUN wget -O /root/frr_dbg.deb https://apps3.cumulusnetworks.com/repos/deb/pool/roh-3/f/frr/frr-dbg_3.1+cl3u2-1~ubuntu16.04+1~1506550809.d4b6eca_amd64.deb
+ ---> Using cache
+ ---> 4e9424836f22
+Step 7/12 : RUN wget -O /root/frr-pythontools.deb https://apps3.cumulusnetworks.com/repos/deb/pool/roh-3/f/frr/frr-pythontools_3.1+cl3u2-1~ubuntu16.04+1~1506550809.d4b6eca_all.deb
+ ---> Using cache
+ ---> f17dbf528176
+Step 8/12 : RUN dpkg -i /root/frr.deb;     dpkg -i /root/frr-pythontools.deb;     dpkg -i /root/frr_doc.deb;     dpkg -i /root/frr_dbg.deb;     rm -rfv /root/*deb
+ ---> Using cache
+ ---> c90bf7a638e2
+Step 9/12 : COPY 99frr_defaults.conf /etc/sysctl.d/99frr_defaults.conf
+ ---> Using cache
+ ---> a802f04a5543
+Step 10/12 : COPY start.sh /usr/lib/frr/start.sh
+ ---> Using cache
+ ---> e34a1bf35a07
+Step 11/12 : COPY daemons /etc/frr/daemons
+ ---> Using cache
+ ---> 18635e6e77a4
+Step 12/12 : ENTRYPOINT /usr/lib/frr/start.sh
+ ---> Using cache
+ ---> 13e9d5074a76
+Successfully built 13e9d5074a76
+Successfully tagged cumulusnetworks/frrouting:CL3.4.2
