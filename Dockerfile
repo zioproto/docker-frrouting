@@ -16,7 +16,6 @@ RUN /usr/bin/apt-get update -yq && /usr/bin/apt-get install -yq \
     python-ipaddr \
     libsnmp30 \
     frr \
-    frr-pythontools \
     && rm -rf /var/lib/apt/lists/*
 
 COPY 99frr_defaults.conf /etc/sysctl.d/99frr_defaults.conf
